@@ -89,13 +89,24 @@ app.put("/game/:id",(req, res)=>{
        var id = parseInt(req.params.id);
       var game = DB.games.find(g => g.id == id);
 
-       if(game != undefined){
-        var {title, price, year} = req.body;
-        
+        if(game != undefined){
+            var {title, price, year} = req.body;
+           
+            if(title != undefined){
+                game.title = title;
+            }
+            if(price != undefined){
 
-       }else{
+                game.price = price;
+            }
+            if(year != undefined){
+
+               game.year = year; 
+            }
+            res.sendStatus(200);
+        }else{
         res.sendStatus(404);
-       }
+        }
     }
 
 });
